@@ -31,6 +31,8 @@ class BasicGuardController {
         c.castShadow = true;
       });
       this._target = fbx;
+      fbx.position.x = 10;
+      fbx.position.z = 10;
       this._params.scene.add(this._target);
       this._mixer = new THREE.AnimationMixer(this._target);
       this._manager = new THREE.LoadingManager();
