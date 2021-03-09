@@ -59,10 +59,6 @@ class BasicGuardController {
       loader.load('Idle.fbx', (a) => {
         _OnLoad('idle', a);
       });
-      // loader.load('NormalMovingMotionJump.fbx', (a) => {
-      // loader.load('ExtendedMovingMotionJump.fbx', (a) => {
-      // loader.load('ExtendedInPlaceMotionJump.fbx', (a) => {
-      // loader.load('HalfExtendedInPlaceMotionJump.fbx', (a) => {
       loader.load('SlightExtendedInPlaceMotionJump.fbx', (a) => {
         _OnLoad('JumpMotion', a);
       });
@@ -128,8 +124,8 @@ class BasicGuardController {
     sideways.applyQuaternion(controlObject.quaternion);
     sideways.normalize();
 
-    sideways.multiplyScalar(velocity.x * timeInSeconds/1.25);
-    forward.multiplyScalar(velocity.z * timeInSeconds/1.25);
+    sideways.multiplyScalar(velocity.x * timeInSeconds / 1.25);
+    forward.multiplyScalar(velocity.z * timeInSeconds / 1.25);
     controlObject.position.add(forward);
     controlObject.position.add(sideways);
     oldPosition.copy(controlObject.position);
@@ -167,7 +163,7 @@ class SprintState extends State {
       curAction.play();
     }
   }
-  Exit() {}
+  Exit() { }
   Update(_, input) {
     if (input._keys.forward || input._keys.backward) {
       if (!input._keys.shift) {
@@ -200,7 +196,6 @@ class JumpStaticState extends State {
     this._currentAction = this._parent._proxy._animations['JumpStatic'].action;
     this._prevState = prevState;
     const prevActions = this._parent._proxy._animations[prevState.Name].action;
-    console.log(prevActions)
     this._currentAction.crossFadeFrom(prevActions, 0.5, true);
     this._currentAction.enabled = true;
     this._currentAction.time = 0.01;
@@ -228,7 +223,6 @@ class JumpMotionState extends State {
     this._currentAction = this._parent._proxy._animations['JumpMotion'].action;
     this._prevState = prevState;
     const prevActions = this._parent._proxy._animations[prevState.Name].action;
-    console.log(prevActions)
     this._currentAction.crossFadeFrom(prevActions, 0.25, true);
     this._currentAction.enabled = true;
     this._currentAction.time = 0.01;
@@ -271,7 +265,7 @@ class WalkState extends State {
       curAction.play();
     }
   }
-  Exit() {}
+  Exit() { }
   Update(_, input) {
     if (input._keys.forward || input._keys.backward) {
       if (input._keys.shift) {
@@ -312,7 +306,7 @@ class IdleState extends State {
       curAction.play();
     }
   }
-  Exit() {}
+  Exit() { }
   Update(_, input) {
     if (input._keys.forward || input._keys.backward) {
       this._parent.SetState('walk');
